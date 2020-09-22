@@ -1,4 +1,4 @@
-import { Router, RouterOptions} from 'express';
+import { Router } from 'express';
 import appointmentsRouter from './appointments.routes';
 
 

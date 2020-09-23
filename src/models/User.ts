@@ -3,14 +3,16 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 
 
 
-@Entity('appointments')
-class Appointment {
+@Entity('users')
+class User {
     @PrimaryGeneratedColumn('uuid')
     id: string;
     @Column()
-    provider: string;
-    @Column('time with time zone')
-    date: Date;
+    name: string;
+    @Column()
+    email: string;
+    @Column()
+    password: string;
     @CreateDateColumn()
     created_at: Date;
     @UpdateDateColumn()
@@ -20,4 +22,4 @@ class Appointment {
 
 }
 
-export default Appointment;
+export default User;

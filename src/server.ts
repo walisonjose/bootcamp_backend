@@ -4,6 +4,8 @@ import routes from './routes';
 
 import './database';
 
+import 'reflect-metadata';
+
 
 const cors = require('cors')
 

@@ -12,11 +12,11 @@ const appointmentsRouter = Router();
 
 
 
-appointmentsRouter.get('/', (request, response) => {
+appointmentsRouter.get('/',  async (request, response) => {
 
     const appointmentsRepository = getCustomRepository(AppointmentsRepository);
 
-    const appointments = appointmentsRepository.find();
+    const appointments = await appointmentsRepository.find();
     return response.json(appointments);
 
 });
@@ -42,9 +42,13 @@ appointmentsRouter.get('/', (request, response) => {
 
         const CreateAppointment = new CreateAppointmentService();
 
-        const appointment = await CreateAppointment.execute({ date: parseDate, provider })
+        const appointment = await CreateAppointment.execute({
+             date: parseDate,
+              provider,
+             });
 
         return response.json(appointment);
+        
     } catch (err) {
         return response
             .status(400)

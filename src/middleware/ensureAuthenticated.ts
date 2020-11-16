@@ -37,9 +37,9 @@ export default function ensureAuthenticated(
         const decoded = verify(token, secret);
         const { sub } = decoded as TokenPayload;
        
-       // request.user = {
-        //    id: sub,
-       // }
+        request.user = { 
+            id: sub,
+        }
        
 
 

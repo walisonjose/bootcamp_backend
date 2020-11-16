@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import CreateUserService from '../services/CreateUserService';
+import UpdateUserAvatarService from '../services/UpdateUserAvatarService';
 import ensureAuthenticated from '../middleware/ensureAuthenticated';
 import uploadConfig from '../config/upload';
 
@@ -33,8 +34,20 @@ usersRouter.post('/', upload.single('file'), async (request, response) => {
 
 });
 
-usersRouter.patch('/avatar', ensureAuthenticated, upload.single('file'), async (request, response) => {
+usersRouter.patch(
+    '/avatar',
+     ensureAuthenticated, 
+     upload.single('avatar'), 
+     async (request, response) => {
     try {
+
+        const updateUserAvatar = new UpdateUserAvatarService();
+        await  updateUserAvatar.execute({
+            user_id: request.user.id,
+            avatarFilename: request.file.filename,
+        });
+
+        return response.json({ ok: true});
        
 
         return response.json({ ok: true});
